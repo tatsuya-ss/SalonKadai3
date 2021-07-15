@@ -8,10 +8,15 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet private weak var firstTextField: UITextField!
+    @IBOutlet private weak var secondTextField: UITextField!
+    @IBOutlet private weak var resultLabel: UILabel!
+    @IBOutlet private weak var firstNumberLabel: UILabel!
+    @IBOutlet private weak var secondNumberLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
 
 

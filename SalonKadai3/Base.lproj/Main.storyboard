@@ -123,6 +123,13 @@
                             <constraint firstItem="ppo-NX-N67" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="dRl-IF-lFM"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="firstNumberLabel" destination="1Ax-Bh-xSg" id="gVT-oh-ktL"/>
+                        <outlet property="firstTextField" destination="5h6-Pt-z9L" id="Te1-cN-cHd"/>
+                        <outlet property="resultLabel" destination="g7P-Kz-KNp" id="7cP-Qp-2mV"/>
+                        <outlet property="secondNumberLabel" destination="YZn-I7-kJ9" id="DWS-XP-v8F"/>
+                        <outlet property="secondTextField" destination="snf-rO-26d" id="xvO-wm-eSp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
