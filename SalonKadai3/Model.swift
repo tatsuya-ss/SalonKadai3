@@ -8,34 +8,30 @@
 import Foundation
 
 enum TextError: Error {
-    case invalidFirst
-    case invalidSecond
-    case invalidBoth
+    case invalidNil
+    case invalidEnpty
+    case invalidNotInt
 }
 
 protocol ModelProtocol {
-    func validate(firstText: String?, secontText: String?) -> Result<Void, TextError>
+    func validate(text: String?) -> Result<String, TextError>
 }
 
 final class Model : ModelProtocol {
-    func validate(firstText: String?, secontText: String?) -> Result<Void, TextError> {
-        switch (firstText, secontText) {
-        case (.none, .none):
-            return .failure(.invalidBoth)
-        case (.none, .some):
-            return .failure(.invalidFirst)
-        case (.some, .none):
-            return .failure(.invalidSecond)
-        case (let firstText?, let secondText?):
-            switch (firstText.isEmpty, secondText.isEmpty) {
-            case (true, true):
-                return .failure(.invalidBoth)
-            case (true, false):
-                return .failure(.invalidFirst)
-            case (false, true):
-                return .failure(.invalidSecond)
-            case (false, false):
-                return .success(())
+    func validate(text: String?) -> Result<String, TextError> {
+        switch (text) {
+        case (.none):
+            return .failure(.invalidNil)
+        case (let text?):
+            switch text.isEmpty {
+            case true:
+                return .failure(.invalidEnpty)
+            case false:
+                if let numberInt = Int(text) {
+                    return .success(String(numberInt))
+                } else {
+                    return .failure(.invalidNotInt)
+                }
             }
         }
     }
