@@ -12,7 +12,19 @@ extension Notification.Name {
     static let inputSecondText = Self.init("inputSecondText")
 }
 
-
+enum TextState {
+    case first
+    case second
+    
+    var notificationName: Notification.Name {
+        switch self {
+        case .first:
+            return .inputFirstText
+        case .second:
+            return .inputSecondText
+        }
+    }
+}
 
 final class ViewModel {
     
@@ -24,28 +36,15 @@ final class ViewModel {
         self.model = model
     }
     
-    func firstNumbersInput(firstText: String?) {
-        let result = model.validate(text: firstText)
+    func NumbersInput(text: String?, isOn: Bool, textState: TextState) {
+        let result = model.validate(text: text, isOn: isOn)
         
         switch result {
         case .success(let number):
-            notificationCenter.post(name: .inputFirstText,
+            notificationCenter.post(name: textState.notificationName,
                                     object: number)
         case .failure(let error):
-            notificationCenter.post(name: .inputFirstText,
-                                    object: error.errorText)
-        }
-    }
-    
-    func secondNumbersInput(secondText: String?) {
-        let result = model.validate(text: secondText)
-        
-        switch result {
-        case .success(let number):
-            notificationCenter.post(name: .inputSecondText,
-                                    object: number)
-        case .failure(let error):
-            notificationCenter.post(name: .inputSecondText,
+            notificationCenter.post(name: textState.notificationName,
                                     object: error.errorText)
         }
     }

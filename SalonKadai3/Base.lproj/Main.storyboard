@@ -123,10 +123,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="caluculateButton" destination="BlW-TJ-0gX" id="UeD-Aq-I7d"/>
                         <outlet property="firstNumberLabel" destination="1Ax-Bh-xSg" id="gVT-oh-ktL"/>
+                        <outlet property="firstNumberSwitch" destination="GyH-D7-IVk" id="EQw-Mw-Bd1"/>
                         <outlet property="firstTextField" destination="5h6-Pt-z9L" id="Te1-cN-cHd"/>
                         <outlet property="resultLabel" destination="g7P-Kz-KNp" id="7cP-Qp-2mV"/>
                         <outlet property="secondNumberLabel" destination="YZn-I7-kJ9" id="DWS-XP-v8F"/>
+                        <outlet property="secondNumberSwitch" destination="iXk-Fp-UY0" id="jwr-te-vsF"/>
                         <outlet property="secondTextField" destination="snf-rO-26d" id="xvO-wm-eSp"/>
                     </connections>
                 </viewController>

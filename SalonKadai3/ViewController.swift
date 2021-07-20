@@ -13,6 +13,9 @@ class ViewController: UIViewController {
     @IBOutlet private weak var resultLabel: UILabel!
     @IBOutlet private weak var firstNumberLabel: UILabel!
     @IBOutlet private weak var secondNumberLabel: UILabel!
+    @IBOutlet private weak var firstNumberSwitch: UISwitch!
+    @IBOutlet private weak var secondNumberSwitch: UISwitch!
+    @IBOutlet weak var caluculateButton: UIButton!
     
     private let notificationCenter = NotificationCenter()
     private var viewModel: ViewModel?
@@ -27,39 +30,50 @@ class ViewController: UIViewController {
         secondTextField.addTarget(self,
                                  action: #selector(secondTextFieldEditingChanged),
                                  for: .editingChanged)
+        firstNumberSwitch.addTarget(self,
+                                    action: #selector(firstTextFieldEditingChanged),
+                                    for: .touchUpInside)
+        secondNumberSwitch.addTarget(self,
+                                     action: #selector(secondTextFieldEditingChanged),
+                                     for: .touchUpInside)
 
         notificationCenter.addObserver(self,
-                                       selector: #selector(updateValidationFirstText),
+                                       selector: #selector(updateValidationText),
                                        name: .inputFirstText,
                                        object: nil)
         
         notificationCenter.addObserver(self,
-                                       selector: #selector(updateValidationSecondText),
+                                       selector: #selector(updateValidationText),
                                        name: .inputSecondText,
                                        object: nil)
-
+        
     }
 }
 
 extension ViewController {
     @objc func firstTextFieldEditingChanged(sender: UITextField) {
-        viewModel?.firstNumbersInput(firstText: firstTextField.text)
+        viewModel?.NumbersInput(text: firstTextField.text,
+                                isOn: firstNumberSwitch.isOn,
+                                textState: .first)
     }
     
     @objc func secondTextFieldEditingChanged(sender: UITextField) {
-        viewModel?.secondNumbersInput(secondText: secondTextField.text)
-    }
-
-    
-    @objc func updateValidationFirstText(notifiation: Notification) {
-        guard let text = notifiation.object as? String else { return }
-        firstNumberLabel.text = text
+        viewModel?.NumbersInput(text: secondTextField.text,
+                                isOn: secondNumberSwitch.isOn,
+                                textState: .second)
     }
     
-    @objc func updateValidationSecondText(notifiation: Notification) {
-        guard let text = notifiation.object as? String else { return }
-        secondNumberLabel.text = text
-
+    @objc func updateValidationText(notifiation: Notification) {
+        switch notifiation.name {
+        case .inputFirstText:
+            guard let text = notifiation.object as? String else { return }
+            firstNumberLabel.text = text
+        case .inputSecondText:
+            guard let text = notifiation.object as? String else { return }
+            secondNumberLabel.text = text
+        default:
+            break
+        }
     }
 
 }

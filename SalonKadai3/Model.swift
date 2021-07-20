@@ -14,11 +14,11 @@ enum TextError: Error {
 }
 
 protocol ModelProtocol {
-    func validate(text: String?) -> Result<String, TextError>
+    func validate(text: String?, isOn: Bool) -> Result<String, TextError>
 }
 
 final class Model : ModelProtocol {
-    func validate(text: String?) -> Result<String, TextError> {
+    func validate(text: String?, isOn: Bool) -> Result<String, TextError> {
         switch (text) {
         case (.none):
             return .failure(.invalidNil)
@@ -28,7 +28,13 @@ final class Model : ModelProtocol {
                 return .failure(.invalidEnpty)
             case false:
                 if let numberInt = Int(text) {
-                    return .success(String(numberInt))
+                    switch isOn {
+                    case true:
+                        let minusNumber = -numberInt
+                        return .success(String(minusNumber))
+                    case false:
+                        return .success(String(numberInt))
+                    }
                 } else {
                     return .failure(.invalidNotInt)
                 }
