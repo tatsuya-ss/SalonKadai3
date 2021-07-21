@@ -13,20 +13,26 @@ enum TextError: Error {
     case invalidNotInt
 }
 
+enum CalculateError: Error {
+    case calculateFailure
+}
+
 protocol ModelProtocol {
     func validate(text: String?, isOn: Bool) -> Result<String, TextError>
+    
+    func calculate(firstLabel: String?, secondLabel: String?) -> Result<String, CalculateError>
 }
 
 final class Model : ModelProtocol {
     func validate(text: String?, isOn: Bool) -> Result<String, TextError> {
         switch (text) {
-        case (.none):
+        case (.none): // nilかどうか検証
             return .failure(.invalidNil)
         case (let text?):
-            switch text.isEmpty {
+            switch text.isEmpty {  // nilじゃなければ、空かどうか検証
             case true:
                 return .failure(.invalidEnpty)
-            case false:
+            case false: // 空じゃなければ、文字列か数列かを検証
                 if let numberInt = Int(text) {
                     switch isOn {
                     case true:
@@ -42,7 +48,23 @@ final class Model : ModelProtocol {
         }
     }
     
+    func calculate(firstLabel: String?, secondLabel: String?) -> Result<String, CalculateError> {
+        if let first = Int(firstLabel!),
+           let second = Int(secondLabel!) {
+            let resultInt = first + second
+            let resultString = String(resultInt)
+            return .success(resultString)
+        } else {
+            return .failure(.calculateFailure)
+        }
+    }
+}
 
+struct Calculate {
+    private var firstNumber: Int
+    private var secondNumber: Int
     
-    
+    func plus() -> Int {
+        firstNumber + secondNumber
+    }
 }

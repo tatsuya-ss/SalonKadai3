@@ -10,6 +10,7 @@ import Foundation
 extension Notification.Name {
     static let inputFirstText = Self.init("inputFirstText")
     static let inputSecondText = Self.init("inputSecondText")
+    static let displayResult = Self.init("displayResult")
 }
 
 enum TextState {
@@ -48,6 +49,18 @@ final class ViewModel {
                                     object: error.errorText)
         }
     }
+    
+    func calculate(firstLabel: String?, secondLabel: String?) {
+        let result = model.calculate(firstLabel: firstLabel, secondLabel: secondLabel)
+        
+        switch result {
+        case .success(let result):
+            print(result)
+            notificationCenter.post(name: .displayResult, object: result)
+        case .failure(let error):
+            notificationCenter.post(name: .displayResult, object: error.errorText)
+        }
+    }
 }
 
 private extension TextError {
@@ -59,6 +72,15 @@ private extension TextError {
             return "Enpty"
         case .invalidNotInt:
             return "NotInt"
+        }
+    }
+}
+
+private extension CalculateError {
+    var errorText: String {
+        switch self {
+        case .calculateFailure:
+            return "計算できません"
         }
     }
 }

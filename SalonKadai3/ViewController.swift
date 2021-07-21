@@ -30,6 +30,7 @@ class ViewController: UIViewController {
         secondTextField.addTarget(self,
                                  action: #selector(secondTextFieldEditingChanged),
                                  for: .editingChanged)
+        
         firstNumberSwitch.addTarget(self,
                                     action: #selector(firstTextFieldEditingChanged),
                                     for: .touchUpInside)
@@ -47,6 +48,14 @@ class ViewController: UIViewController {
                                        name: .inputSecondText,
                                        object: nil)
         
+        caluculateButton.addTarget(self,
+                                   action: #selector(calculate),
+                                   for: .touchUpInside)
+        
+        notificationCenter.addObserver(self,
+                                       selector: #selector(displayResultLabel),
+                                       name: .displayResult,
+                                       object: nil)
     }
 }
 
@@ -74,6 +83,16 @@ extension ViewController {
         default:
             break
         }
+    }
+    
+    @objc func calculate() {
+        viewModel?.calculate(firstLabel: firstNumberLabel.text, secondLabel: secondNumberLabel.text)
+    }
+    
+    @objc func displayResultLabel(notification: Notification) {
+        guard let result = notification.object as? String else { return }
+        resultLabel.text = result
+        print(result)
     }
 
 }
