@@ -46,7 +46,7 @@ final class Model: ModelProtocol {
             }
         }
     }
-    
+
     func calculate(firstLabel: String?, secondLabel: String?) -> Result<String, CalculateError> {
         if let first = Int(firstLabel!),
            let second = Int(secondLabel!) {
