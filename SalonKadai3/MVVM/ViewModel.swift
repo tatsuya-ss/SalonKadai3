@@ -7,26 +7,6 @@
 
 import Foundation
 
-extension Notification.Name {
-    static let inputFirstText = Self.init("inputFirstText")
-    static let inputSecondText = Self.init("inputSecondText")
-    static let displayResult = Self.init("displayResult")
-}
-
-enum TextState {
-    case first
-    case second
-
-    var notificationName: Notification.Name {
-        switch self {
-        case .first:
-            return .inputFirstText
-        case .second:
-            return .inputSecondText
-        }
-    }
-}
-
 final class ViewModel {
 
     private let notificationCenter: NotificationCenter

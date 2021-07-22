@@ -137,14 +137,9 @@
 		7518C132269E775400C27C1C /* SalonKadai3 */ = {
 			isa = PBXGroup;
 			children = (
-				75F62B3226A9111A003508FB /* State */,
-				75F62B2F26A90FCE003508FB /* Extension */,
+				75F62B3526A911FD003508FB /* MVVM */,
 				7518C133269E775400C27C1C /* AppDelegate.swift */,
 				7518C135269E775400C27C1C /* SceneDelegate.swift */,
-				7518C137269E775400C27C1C /* ViewController.swift */,
-				7518C163269FC53F00C27C1C /* ViewModel.swift */,
-				7518C165269FC55200C27C1C /* Model.swift */,
-				7518C139269E775400C27C1C /* Main.storyboard */,
 				7518C13C269E775A00C27C1C /* Assets.xcassets */,
 				7518C13E269E775A00C27C1C /* LaunchScreen.storyboard */,
 				7518C141269E775A00C27C1C /* Info.plist */,
@@ -184,6 +179,19 @@
 				75F62B3326A91135003508FB /* TextFieldState.swift */,
 			);
 			path = State;
+			sourceTree = "<group>";
+		};
+		75F62B3526A911FD003508FB /* MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				75F62B2F26A90FCE003508FB /* Extension */,
+				75F62B3226A9111A003508FB /* State */,
+				7518C137269E775400C27C1C /* ViewController.swift */,
+				7518C163269FC53F00C27C1C /* ViewModel.swift */,
+				7518C165269FC55200C27C1C /* Model.swift */,
+				7518C139269E775400C27C1C /* Main.storyboard */,
+			);
+			path = MVVM;
 			sourceTree = "<group>";
 		};
 		FD61237172D39DAFA8C055E3 /* Frameworks */ = {
