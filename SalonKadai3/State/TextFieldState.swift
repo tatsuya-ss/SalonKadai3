@@ -6,3 +6,17 @@
 //
 
 import Foundation
+
+enum TextState {
+    case first
+    case second
+
+    var notificationName: Notification.Name {
+        switch self {
+        case .first:
+            return .inputFirstText
+        case .second:
+            return .inputSecondText
+        }
+    }
+}
