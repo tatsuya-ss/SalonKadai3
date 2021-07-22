@@ -16,7 +16,7 @@ extension Notification.Name {
 enum TextState {
     case first
     case second
-    
+
     var notificationName: Notification.Name {
         switch self {
         case .first:
@@ -28,18 +28,18 @@ enum TextState {
 }
 
 final class ViewModel {
-    
+
     private let notificationCenter: NotificationCenter
     private let model: ModelProtocol
-    
-    init(notificationCenter: NotificationCenter,  model: ModelProtocol = Model()) {
+
+    init(notificationCenter: NotificationCenter, model: ModelProtocol = Model()) {
         self.notificationCenter = notificationCenter
         self.model = model
     }
-    
-    func NumbersInput(text: String?, isOn: Bool, textState: TextState) {
+
+    func numbersInput(text: String?, isOn: Bool, textState: TextState) {
         let result = model.validate(text: text, isOn: isOn)
-        
+
         switch result {
         case .success(let number):
             notificationCenter.post(name: textState.notificationName,
@@ -49,13 +49,12 @@ final class ViewModel {
                                     object: error.errorText)
         }
     }
-    
+
     func calculate(firstLabel: String?, secondLabel: String?) {
         let result = model.calculate(firstLabel: firstLabel, secondLabel: secondLabel)
-        
+
         switch result {
         case .success(let result):
-            print(result)
             notificationCenter.post(name: .displayResult, object: result)
         case .failure(let error):
             notificationCenter.post(name: .displayResult, object: error.errorText)

@@ -19,13 +19,12 @@ enum CalculateError: Error {
 
 protocol ModelProtocol {
     func validate(text: String?, isOn: Bool) -> Result<String, TextError>
-    
     func calculate(firstLabel: String?, secondLabel: String?) -> Result<String, CalculateError>
 }
 
-final class Model : ModelProtocol {
+final class Model: ModelProtocol {
     func validate(text: String?, isOn: Bool) -> Result<String, TextError> {
-        switch (text) {
+        switch text {
         case (.none): // nilかどうか検証
             return .failure(.invalidNil)
         case (let text?):
@@ -57,14 +56,5 @@ final class Model : ModelProtocol {
         } else {
             return .failure(.calculateFailure)
         }
-    }
-}
-
-struct Calculate {
-    private var firstNumber: Int
-    private var secondNumber: Int
-    
-    func plus() -> Int {
-        firstNumber + secondNumber
     }
 }
