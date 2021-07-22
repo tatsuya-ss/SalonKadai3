@@ -15,6 +15,8 @@
 		7518C140269E775A00C27C1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7518C13E269E775A00C27C1C /* LaunchScreen.storyboard */; };
 		7518C14B269E775B00C27C1C /* SalonKadai3Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518C14A269E775B00C27C1C /* SalonKadai3Tests.swift */; };
 		7518C156269E775B00C27C1C /* SalonKadai3UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518C155269E775B00C27C1C /* SalonKadai3UITests.swift */; };
+		7518C164269FC53F00C27C1C /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518C163269FC53F00C27C1C /* ViewModel.swift */; };
+		7518C166269FC55200C27C1C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518C165269FC55200C27C1C /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		7518C151269E775B00C27C1C /* SalonKadai3UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalonKadai3UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7518C155269E775B00C27C1C /* SalonKadai3UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalonKadai3UITests.swift; sourceTree = "<group>"; };
 		7518C157269E775B00C27C1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7518C163269FC53F00C27C1C /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		7518C165269FC55200C27C1C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,8 @@
 				7518C133269E775400C27C1C /* AppDelegate.swift */,
 				7518C135269E775400C27C1C /* SceneDelegate.swift */,
 				7518C137269E775400C27C1C /* ViewController.swift */,
+				7518C163269FC53F00C27C1C /* ViewModel.swift */,
+				7518C165269FC55200C27C1C /* Model.swift */,
 				7518C139269E775400C27C1C /* Main.storyboard */,
 				7518C13C269E775A00C27C1C /* Assets.xcassets */,
 				7518C13E269E775A00C27C1C /* LaunchScreen.storyboard */,
@@ -258,8 +264,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7518C166269FC55200C27C1C /* Model.swift in Sources */,
 				7518C138269E775400C27C1C /* ViewController.swift in Sources */,
 				7518C134269E775400C27C1C /* AppDelegate.swift in Sources */,
+				7518C164269FC53F00C27C1C /* ViewModel.swift in Sources */,
 				7518C136269E775400C27C1C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
