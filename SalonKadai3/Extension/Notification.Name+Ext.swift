@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+extension Notification.Name {
+    static let inputFirstText = Self.init("inputFirstText")
+    static let inputSecondText = Self.init("inputSecondText")
+    static let displayResult = Self.init("displayResult")
+}

@@ -17,6 +17,7 @@
 		7518C156269E775B00C27C1C /* SalonKadai3UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518C155269E775B00C27C1C /* SalonKadai3UITests.swift */; };
 		7518C164269FC53F00C27C1C /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518C163269FC53F00C27C1C /* ViewModel.swift */; };
 		7518C166269FC55200C27C1C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7518C165269FC55200C27C1C /* Model.swift */; };
+		75F62B3126A91011003508FB /* Notification.Name+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F62B3026A91011003508FB /* Notification.Name+Ext.swift */; };
 		AD1C9E004795EEABD999E55E /* Pods_SalonKadai3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4A1C3760797FED5E9BFDFCF /* Pods_SalonKadai3.framework */; };
 		E46711CB936823D022D73A5A /* Pods_SalonKadai3_SalonKadai3UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D100E7D7A0010A02FB42A505 /* Pods_SalonKadai3_SalonKadai3UITests.framework */; };
 		F8A719D7DA02790181A6D1B5 /* Pods_SalonKadai3Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC9E1298A174434ADC3AF769 /* Pods_SalonKadai3Tests.framework */; };
@@ -59,6 +60,7 @@
 		7518C157269E775B00C27C1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7518C163269FC53F00C27C1C /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		7518C165269FC55200C27C1C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		75F62B3026A91011003508FB /* Notification.Name+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification.Name+Ext.swift"; sourceTree = "<group>"; };
 		971166FDC3ED3BE8F1BDF600 /* Pods-SalonKadai3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalonKadai3.debug.xcconfig"; path = "Target Support Files/Pods-SalonKadai3/Pods-SalonKadai3.debug.xcconfig"; sourceTree = "<group>"; };
 		C3028C8185FA2869CDFE4606 /* Pods-SalonKadai3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalonKadai3.release.xcconfig"; path = "Target Support Files/Pods-SalonKadai3/Pods-SalonKadai3.release.xcconfig"; sourceTree = "<group>"; };
 		D100E7D7A0010A02FB42A505 /* Pods_SalonKadai3_SalonKadai3UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalonKadai3_SalonKadai3UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +135,7 @@
 		7518C132269E775400C27C1C /* SalonKadai3 */ = {
 			isa = PBXGroup;
 			children = (
+				75F62B2F26A90FCE003508FB /* Extension */,
 				7518C133269E775400C27C1C /* AppDelegate.swift */,
 				7518C135269E775400C27C1C /* SceneDelegate.swift */,
 				7518C137269E775400C27C1C /* ViewController.swift */,
@@ -162,6 +165,14 @@
 				7518C157269E775B00C27C1C /* Info.plist */,
 			);
 			path = SalonKadai3UITests;
+			sourceTree = "<group>";
+		};
+		75F62B2F26A90FCE003508FB /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				75F62B3026A91011003508FB /* Notification.Name+Ext.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		FD61237172D39DAFA8C055E3 /* Frameworks */ = {
@@ -394,6 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75F62B3126A91011003508FB /* Notification.Name+Ext.swift in Sources */,
 				7518C166269FC55200C27C1C /* Model.swift in Sources */,
 				7518C138269E775400C27C1C /* ViewController.swift in Sources */,
 				7518C134269E775400C27C1C /* AppDelegate.swift in Sources */,
