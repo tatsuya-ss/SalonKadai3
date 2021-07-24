@@ -33,17 +33,59 @@ class SalonKadai3Tests: XCTestCase {
     private var fakeModel: FakeModel!
     private var viewModel: ViewModel!
 
-    func test_changeValidationText() {
-        XCTContext.runActivity(named: "バリデーションに成功する場合") { _ in
+    func test_changeValidationFirstText() {
+        XCTContext.runActivity(named: "firstTextがバリデーションに成功する場合") { _ in
             setup()
             fakeModel.validateResult = .success(String(10))
-
-            viewModel.numbersInput(text: "10", isOn: false, textState: .first) // FakeModelは.validateResultを成功パターンで10をnotificationに送る
+            // FakeModelは.validateResultを成功パターンで10をnotificationに送る
+            viewModel.numbersInput(text: "10", isOn: false, textState: .first)
 
             XCTAssertEqual("10", firstText)  // notificationに10が来た場合、firstTextに10を渡せているかのテスト
 
             clean()
         }
+
+        XCTContext.runActivity(named: "firstTextがバリデーションに失敗する場合") { _ in
+            XCTContext.runActivity(named: "textがnilの場合") { _ in
+                setup()
+
+                fakeModel.validateResult = .failure(.invalidNil)
+
+                viewModel.numbersInput(text: nil, isOn: false, textState: .first)
+
+                XCTAssertEqual("Nil", firstText)
+
+                clean()
+            }
+
+            XCTContext.runActivity(named: "textが空の場合") { _ in
+                setup()
+
+                fakeModel.validateResult = .failure(.invalidEnpty)
+
+                viewModel.numbersInput(text: "", isOn: false, textState: .first)
+
+                XCTAssertEqual("Enpty", firstText)
+
+                clean()
+            }
+
+            XCTContext.runActivity(named: "textが数字でない場合") { _ in
+                setup()
+
+                fakeModel.validateResult = .failure(.invalidNotInt)
+
+                viewModel.numbersInput(text: "文字列", isOn: false, textState: .first)
+
+                XCTAssertEqual("NotInt", firstText)
+
+                clean()
+            }
+
+        }
+
+    }
+
     }
 
     @objc private func updateFirstText(notification: Notification) {
