@@ -86,6 +86,55 @@ class SalonKadai3Tests: XCTestCase {
 
     }
 
+    func test_changeValidationSecondText() {
+        XCTContext.runActivity(named: "secondTextがバリデーションに成功する場合") { _ in
+            setup()
+            fakeModel.validateResult = .success(String(-20))
+            // -20がfakeModelから返ってきて、その-20をpostするために呼び出す
+            viewModel.numbersInput(text: "-20", isOn: true, textState: .second)
+
+            XCTAssertEqual("-20", secondText)
+
+            clean()
+        }
+
+        XCTContext.runActivity(named: "secondTextがバリデーションに失敗する場合") { _ in
+            XCTContext.runActivity(named: "textがnilの場合") { _ in
+                setup()
+
+                fakeModel.validateResult = .failure(.invalidNil)
+
+                viewModel.numbersInput(text: nil, isOn: false, textState: .second)
+
+                XCTAssertEqual("Nil", secondText)
+
+                clean()
+            }
+
+            XCTContext.runActivity(named: "textが空の場合") { _ in
+                setup()
+
+                fakeModel.validateResult = .failure(.invalidEnpty)
+
+                viewModel.numbersInput(text: "", isOn: false, textState: .second)
+
+                XCTAssertEqual("Enpty", secondText)
+
+                clean()
+            }
+
+            XCTContext.runActivity(named: "textが数字でない場合") { _ in
+                setup()
+
+                fakeModel.validateResult = .failure(.invalidNotInt)
+
+                viewModel.numbersInput(text: "文字列", isOn: false, textState: .second)
+
+                XCTAssertEqual("NotInt", secondText)
+
+                clean()
+            }
+        }
     }
 
     @objc private func updateFirstText(notification: Notification) {
