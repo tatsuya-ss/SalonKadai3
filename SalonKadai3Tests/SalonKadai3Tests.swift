@@ -28,6 +28,7 @@ class FakeModel: ModelProtocol {
 class SalonKadai3Tests: XCTestCase {
     private var firstText: String?
     private var secondText: String?
+    private var resultLabel: String?
 
     private let notificationCenter = NotificationCenter()
     private var fakeModel: FakeModel!
@@ -137,6 +138,32 @@ class SalonKadai3Tests: XCTestCase {
         }
     }
 
+    func test_calculate() {
+        XCTContext.runActivity(named: "計算可能な場合") { _ in
+            setup()
+
+            fakeModel.calculateResult = .success(String(100))
+
+            viewModel.calculate(firstLabel: "10", secondLabel: "90")
+
+            XCTAssertEqual("100", resultLabel)
+
+            clean()
+        }
+
+        XCTContext.runActivity(named: "計算不可能な場合") { _ in
+            setup()
+
+            fakeModel.calculateResult = .failure(.calculateFailure)
+
+            viewModel.calculate(firstLabel: "文字", secondLabel: nil)
+
+            XCTAssertEqual("計算できません", resultLabel)
+
+            clean()
+        }
+    }
+
     @objc private func updateFirstText(notification: Notification) {
         guard let text = notification.object as? String else {
             XCTFail("Fail to convert text.")
@@ -153,6 +180,14 @@ class SalonKadai3Tests: XCTestCase {
         secondText = text
     }
 
+    @objc private func displayResultLabel(notification: Notification) {
+        guard let result = notification.object as? String else {
+            XCTFail("Fail to convert text")
+            fatalError()
+        }
+        resultLabel = result
+    }
+
     private func setup() {
         fakeModel = FakeModel()
         viewModel = ViewModel(notificationCenter: notificationCenter,
@@ -166,7 +201,10 @@ class SalonKadai3Tests: XCTestCase {
                                        selector: #selector(updateSecondText),
                                        name: .inputSecondText,
                                        object: nil)
-
+        notificationCenter.addObserver(self,
+                                       selector: #selector(displayResultLabel),
+                                       name: .displayResult,
+                                       object: nil)
     }
 
     private func clean() {
